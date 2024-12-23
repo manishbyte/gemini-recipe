@@ -25,9 +25,9 @@ app.get("/test",(req,res)=>{
   console.log("hiii");
   
 })
-app.use(express.static(path.join(_dirname, "./frontend/my-project/dist")));
+app.use(express.static(path.join(_dirname, "./frontend/my-project/dist/assets")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, "./frontend/my-project/dist/index.html"));
+  res.sendFile(path.join(_dirname, "./frontend/my-project/dist/assets/index.html"));
 });
 app.use(cors({
   origin:`${process.env.FRONTEND_URL}`,
