@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "backend": "file:..",
+    "react-router-dom": "^6.28.1",
+    "react-scripts": "^5.0.1"
+  }
+}
