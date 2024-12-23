@@ -4,37 +4,27 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const cors =require('cors')
-const path =require('path')
 const foodRoutes =require('./routes/foodRoutes')
 // Load environment variables
 dotenv.config();
 
 // Initialize the application
 const app = express();
-const _dirname =path.resolve();
+
 // Connect to the database
 connectDB();
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-// Routes
-app.use("/api/auth", userRoutes);
-app.use("/api/user",foodRoutes)
-app.get("/test",(req,res)=>{
-  console.log("hiii");
-  
-})
-app.use(express.static(path.join(_dirname, "./frontend/my-project/dist/assets")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(_dirname, "./frontend/my-project/dist/assets/index.html"));
-});
 app.use(cors({
-  origin:`${process.env.FRONTEND_URL}`,
+  origin:'http://localhost:5173',
   methods:['GET','POST','PUT'],
   credentials:true
 }))
-
+// Routes
+app.use("/api/auth", userRoutes);
+app.use("/api/user",foodRoutes)
 
 
 
